@@ -1,5 +1,9 @@
 # Scout Elasticsearch Driver   
 
+> **Fork notice.** This is a maintained fork of [babenkoivan/scout-elasticsearch-driver](https://github.com/babenkoivan/scout-elasticsearch-driver) v4.3.0, which is no longer maintained.
+> It only adds compatibility with Laravel Scout 10 and elasticsearch-php 7.17 so applications can upgrade to PHP 8.2+ and Laravel 12 while keeping their existing indices, mappings and queries.
+> The package replaces `babenkoivan/scout-elasticsearch-driver` and keeps the `ScoutElastic\` namespace. It still relies on mapping types, so it requires an Elasticsearch 7.x cluster.
+
 💥 **Introducing [a new Elasticsearch ecosystem for Laravel](#alternatives).** 💥 
 
 ---
@@ -44,16 +48,16 @@ Check out its [features](#features)!
 
 The package has been tested in the following configuration: 
 
-* PHP version &gt;=7.1.3, &lt;=7.3
-* Laravel Framework version &gt;=5.8, &lt;=6
-* Elasticsearch version &gt;=7
+* PHP version &gt;=8.2
+* Laravel Scout version &gt;=10.23.1, &lt;11
+* Elasticsearch version &gt;=7, &lt;8
 
 ## Installation
 
 Use composer to install the package:
 
 ```
-composer require babenkoivan/scout-elasticsearch-driver
+composer require hexium-agency/zoombat-scout-elasticsearch-driver
 ```
 
 If you are using Laravel version &lt;= 5.4 or [the package discovery](https://laravel.com/docs/5.5/packages#package-discovery)
