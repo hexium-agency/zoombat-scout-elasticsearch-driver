@@ -1,7 +1,7 @@
 {
-    "name": "babenkoivan/scout-elasticsearch-driver",
+    "name": "hexium-agency/zoombat-scout-elasticsearch-driver",
     "type": "library",
-    "description": "The Elasticsearch Driver for Laravel Scout",
+    "description": "Maintained fork of babenkoivan/scout-elasticsearch-driver for Laravel Scout 10 and elasticsearch-php 7.17",
     "keywords": [
         "elastic",
         "elasticsearch",
@@ -11,23 +11,26 @@
         "scout",
         "search"
     ],
-    "homepage": "https://babenkoivan.github.io/scout-elasticsearch-driver/",
+    "homepage": "https://github.com/hexium-agency/zoombat-scout-elasticsearch-driver",
     "license": "MIT",
     "authors": [
         {
             "name": "Babenko Ivan",
             "email": "babenko.i.a@gmail.com",
-            "role": "Developer"
+            "role": "Original author"
         }
     ],
     "require": {
-        "php": "^7.1.|^8.0",
-        "elasticsearch/elasticsearch": ">=7.0 <=7.11.0",
-        "laravel/scout": "^7.0|^8.0"
+        "php": "^8.2",
+        "elasticsearch/elasticsearch": "^7.17.3",
+        "laravel/scout": "^10.23.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.0|^8.0",
-        "mockery/mockery": "^1.0"
+        "phpunit/phpunit": "^10.5|^11.5",
+        "mockery/mockery": "^1.6"
+    },
+    "replace": {
+        "babenkoivan/scout-elasticsearch-driver": "4.3.0"
     },
     "autoload": {
         "psr-4": {

@@ -2,10 +2,12 @@
 
 namespace ScoutElastic;
 
+use BadMethodCallException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\LazyCollection;
 use Laravel\Scout\Builder;
 use Laravel\Scout\Engines\Engine;
 use ScoutElastic\Builders\SearchBuilder;
@@ -346,6 +348,14 @@ class ElasticEngine extends Engine
     /**
      * {@inheritdoc}
      */
+    public function lazyMap(Builder $builder, $results, $model)
+    {
+        return LazyCollection::make($this->map($builder, $results, $model)->all());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getTotalCount($results)
     {
         return $results['hits']['total']['value'] ?? 0;
@@ -361,5 +371,21 @@ class ElasticEngine extends Engine
         $query
             ->orderBy($model->getScoutKeyName())
             ->unsearchable();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createIndex($name, array $options = [])
+    {
+        throw new BadMethodCallException('Indexes are managed by index configurators, use the elastic:create-index command.');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function deleteIndex($name)
+    {
+        throw new BadMethodCallException('Indexes are managed by index configurators, use the elastic:drop-index command.');
     }
 }
