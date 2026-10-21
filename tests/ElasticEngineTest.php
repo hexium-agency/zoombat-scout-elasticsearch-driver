@@ -25,7 +25,7 @@ class ElasticEngineTest extends AbstractTestCase
         $this->engine = $this
             ->getMockBuilder(ElasticEngine::class)
             ->disableOriginalConstructor()
-            ->setMethods(null)
+            ->onlyMethods([])
             ->getMock();
     }
 

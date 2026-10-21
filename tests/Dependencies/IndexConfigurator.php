@@ -21,8 +21,7 @@ trait IndexConfigurator
             'getWriteAlias',
         ]);
 
-        $mock = $this->getMockBuilder(ElasticIndexConfigurator::class)
-                     ->setMethods($methods)->getMock();
+        $mock = $this->buildPartialMock(ElasticIndexConfigurator::class, $methods);
 
         $mock->method('getName')
              ->willReturn($name);
@@ -37,5 +36,31 @@ trait IndexConfigurator
              ->willReturn($name.'_write');
 
         return $mock;
+    }
+
+    /**
+     * @param  string  $class
+     * @param  array  $methods
+     * @return \PHPUnit\Framework\MockObject\MockObject
+     */
+    protected function buildPartialMock($class, array $methods)
+    {
+        $existingMethods = array_values(array_filter($methods, function ($method) use ($class) {
+            return method_exists($class, $method);
+        }));
+
+        $missingMethods = array_values(array_diff($methods, $existingMethods));
+
+        $builder = $this->getMockBuilder($class);
+
+        if ($existingMethods) {
+            $builder->onlyMethods($existingMethods);
+        }
+
+        if ($missingMethods) {
+            $builder->addMethods($missingMethods);
+        }
+
+        return $builder->getMock();
     }
 }

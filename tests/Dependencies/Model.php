@@ -27,10 +27,7 @@ trait Model
             ]
         );
 
-        $mock = $this
-            ->getMockBuilder(StubModel::class)
-            ->setMethods($methods)
-            ->getMock();
+        $mock = $this->buildPartialMock(StubModel::class, $methods);
 
         $mock
             ->method('getKey')
